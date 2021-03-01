@@ -9,10 +9,12 @@ public class CartDaoCollectionImplTest {
 
 	public static void main(String[] args) throws Exception  {
 		// TODO Auto-generated method stub
-		System.out.println("Items Added");
+		System.out.println("\n======Items Added======\n");
 		testAddCartItem();
-		System.out.println("after Items has been removed");
+		System.out.println("\n======after Items has been removed======\n");
 		testRemoveCartItem();
+		System.out.println("\n======Display cart items======\n");
+		testGetAllCartItems();
 	}
 	
 	public static void testAddCartItem() throws Exception 
@@ -50,5 +52,14 @@ public class CartDaoCollectionImplTest {
 			System.out.println(item);
 		
 		
+	}
+	public static void testGetAllCartItems() throws Exception
+	{
+		CartDao	cartDao=new CartDaoCollectionImpl();
+		Cart obj = new Cart();
+		obj=cartDao.getAllCartItems(1);
+		List<MenuItem> menuItemList=obj.getMenuItemList();
+		for(MenuItem item: menuItemList)
+			System.out.println(item);
 	}
 }
