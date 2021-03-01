@@ -8,8 +8,8 @@ import com.cognizant.truyum.model.Cart;
 import com.cognizant.truyum.model.MenuItem;
 public class CartDaoCollectionImpl implements CartDao  {
 
-	private static final Exception CartEmptyException = null;
-	HashMap<Long,Cart> userCarts;
+	
+	private static HashMap<Long,Cart> userCarts;
 	
 	public CartDaoCollectionImpl()
 	{
@@ -23,20 +23,28 @@ public class CartDaoCollectionImpl implements CartDao  {
 		// TODO Auto-generated method stub
 		 MenuItemDao menuItemDao = new MenuItemDaoCollectionImpl();
 		 MenuItem obj = menuItemDao.getMenuItem(menuItemId);
+		 //System.out.println(obj);
 		 if(userCarts.containsKey(userId))
 		 {
 			 List<MenuItem> menuItemList=userCarts.get(userId).getMenuItemList();
 			 menuItemList.add(obj);
+			 Cart cartObj=new Cart();
+			 cartObj.setMenuItemList(menuItemList);
+			 userCarts.put(userId, cartObj);
+			 
 		 }
 		 
 		 else 
 		 {
-			 userCarts.put(null, null);
+			 
 			 List<MenuItem> menuItemList=new ArrayList<MenuItem>();
 			 menuItemList.add(obj);
-			 Cart cartObj=new Cart();
-			 cartObj.setMenuItemList(menuItemList);
+			 
+			 Cart cartObj=new Cart(menuItemList,0);
+			 //cartObj.setMenuItemList(menuItemList);
+			 //System.out.println(cartObj);
 			 userCarts.put(userId, cartObj);
+			 
 		 }
 		
 		
@@ -48,7 +56,7 @@ public class CartDaoCollectionImpl implements CartDao  {
 		
 		if(menuItemList==null ||menuItemList.isEmpty())
 		{
-			throw CartEmptyException;
+			throw new CartEmptyException("Cart is empty");
 		}
 		else
 		{
@@ -66,19 +74,23 @@ public class CartDaoCollectionImpl implements CartDao  {
 	public void removeCartItem(long userId, long menuItemId) {
 		// TODO Auto-generated method stub
 		List<MenuItem> menuItemList=userCarts.get(userId).getMenuItemList();
+		
+		//System.out.println(menuItemList);
 		int i=0;
 		for(MenuItem X: menuItemList)
 		{
 			if(X.getId()==menuItemId)
 			{
-				menuItemList.remove(i);
+				menuItemList.remove(X);
+				break;
 			}
-			i++;
+			
 		}
 		
-		Cart cartObj=new Cart();
+		
+		/*Cart cartObj=new Cart();
 		cartObj.setMenuItemList(menuItemList);
-		userCarts.put(userId, cartObj);
+		userCarts.put(userId, cartObj);*/
 		
 	}
 
