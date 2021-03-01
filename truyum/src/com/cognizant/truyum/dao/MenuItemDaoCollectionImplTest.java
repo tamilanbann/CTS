@@ -9,8 +9,11 @@ public class MenuItemDaoCollectionImplTest {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		System.out.println("=== Menu Item List Admin ===");
 		testGetMenuItemListAdmin();
+		System.out.println("=== Menu Item List Customer ===");
 		testGetMenuItemListCustomer();
+		System.out.println("=== Menu modification ===");
 		testModifyMenuItem();
 	}
 	public static void testGetMenuItemListAdmin()

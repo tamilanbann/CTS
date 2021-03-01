@@ -86,7 +86,7 @@ public class MenuItem {
 
 	@Override
 	public String toString() {
-		return String.format("%-15s %7.2f %-15s %-15s %-15s %-15s", name, price, active ? "Yes" : "No", date, category,
+		return String.format("%-20s %7.2f %-15s %-15s %-15s %-15s", name, price, active ? "Yes" : "No", date, category,
 				freeDelivery ? "Yes" : "No");
 	}
 }

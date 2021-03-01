@@ -2,6 +2,8 @@ package com.cognizant.truyum.dao;
 
 import java.time.Duration;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,14 +46,15 @@ public class MenuItemDaoCollectionImpl implements MenuItemDao{
 	public List<MenuItem> getMenuItemListCustomer() {
 		// TODO Auto-generated method stub
 		List<MenuItem> menuItemListCustomer=new ArrayList<MenuItem>(); 
-		 for(MenuItem X:menuItemList)
+		LocalDate currentDate = LocalDate.now();
+		 for(MenuItem menu:menuItemList)
 		 {
-			 	LocalDate currentDate = LocalDate.now();
-			 	//LocalDate  = LocalDateTime.parse(in,DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
-	            Duration duration = Duration.between(currentDate,X.getDate());
-	            if(duration.toDays()>1 && X.isActive())
+			 	
+			 	//LocalDate date = LocalDateTime.parse(X.getDate(),DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
+	            //Duration duration = Duration.between(currentDate,X.getDate());
+	            if(menu.getDate().isBefore(currentDate) || menu.getDate().equals(currentDate))
 	            {
-	            	menuItemListCustomer.add(X);
+	            	menuItemListCustomer.add(menu);
 	            	
 	            }
 		 }
