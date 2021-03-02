@@ -13,13 +13,14 @@ import com.cognizant.truyum.model.MenuItem;
 
 public class CartDaoSqlImpl {
 
- public void addCartItem(long userId, long menuItemId) throws ClassNotFoundException, SQLException
+ public void addCartItem(long userId, long menuItemId,int cartid) throws ClassNotFoundException, SQLException
  {
 	 	Connection con= ConnectionHandler.getConnection();
-		String query="INSERT INTO cart VALUES(?,?);";
+		String query="INSERT INTO cart VALUES(?,?,?);";
 		PreparedStatement preStmt = con.prepareStatement(query);
-		preStmt.setLong(1,userId);
-		preStmt.setLong(2,menuItemId);
+		preStmt.setLong(1,menuItemId);
+		preStmt.setLong(2,userId);
+		preStmt.setLong(3,cartid);
 		int result = preStmt.executeUpdate();
  }
  
@@ -31,7 +32,7 @@ public class CartDaoSqlImpl {
 	 
 	 Cart cart=new Cart(menuItemList,0);
 	 Connection con= ConnectionHandler.getConnection();
-	 String query="SELECT * FROM menu_item_list WHERE id_menu IN (SELECT id_menu FROM cart WHERE id_user=?;);";
+	 String query="SELECT * FROM menu_item_list WHERE id_menu IN (SELECT id_menu FROM cart WHERE id_user=?);";
 	 PreparedStatement preStmt = con.prepareStatement(query);
 	 preStmt.setLong(1, userId);
 	 ResultSet rs= preStmt.executeQuery();
@@ -57,7 +58,7 @@ public class CartDaoSqlImpl {
  public void  removeCartItem(long userId, long menuItemId) throws ClassNotFoundException, SQLException
  {
 	 	Connection con= ConnectionHandler.getConnection();
-		String query="DELETE FROM Cart WHERE id_user=?, id_menu=?;";
+		String query="DELETE FROM Cart WHERE id_user=? AND id_menu=?;";
 		PreparedStatement preStmt = con.prepareStatement(query);
 		preStmt.setLong(1,userId);
 		preStmt.setLong(2,menuItemId);

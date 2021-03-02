@@ -1,5 +1,6 @@
 package com.cognizant.truyum.dao;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import com.cognizant.truyum.model.Cart;
@@ -9,12 +10,15 @@ public class CartDaoCollectionImplTest {
 
 	public static void main(String[] args) throws Exception  {
 		// TODO Auto-generated method stub
-		System.out.println("\n======Items Added======\n");
+		/*System.out.println("\n======Items Added======\n");
 		testAddCartItem();
 		System.out.println("\n======after Items has been removed======\n");
 		testRemoveCartItem();
 		System.out.println("\n======Display cart items======\n");
-		testGetAllCartItems();
+		testGetAllCartItems();*/
+		
+		//testcartsql();
+		
 	}
 	
 	public static void testAddCartItem() throws Exception 
@@ -61,5 +65,24 @@ public class CartDaoCollectionImplTest {
 		List<MenuItem> menuItemList=obj.getMenuItemList();
 		for(MenuItem item: menuItemList)
 			System.out.println(item);
+	}
+	public static void testcartsql() throws ClassNotFoundException, SQLException
+	{
+		CartDaoSqlImpl obj= new CartDaoSqlImpl();
+		obj.addCartItem(1,1,1);
+		obj.addCartItem(1,2,2);
+		obj.addCartItem(1,3,3);
+		List<MenuItem> menuItemList=obj.getAllCartItems(1);
+		System.out.println("\n======Items Added======\n");
+		for(MenuItem item: menuItemList)
+			System.out.println(item);
+		
+		obj.removeCartItem(1,1);
+		menuItemList=obj.getAllCartItems(1);
+		System.out.println("\n======after Items has been removed======\n");
+		for(MenuItem item: menuItemList)
+			System.out.println(item);
+		obj.removeCartItem(1,2);
+		obj.removeCartItem(1,3);
 	}
 }

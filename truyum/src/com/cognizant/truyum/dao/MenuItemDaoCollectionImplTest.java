@@ -18,7 +18,7 @@ public class MenuItemDaoCollectionImplTest {
 		System.out.println("=== Menu modification ===");
 		testModifyMenuItem();*/
 		
-		//testMenuSql();
+		testMenuSql();
 		
 		
 		
