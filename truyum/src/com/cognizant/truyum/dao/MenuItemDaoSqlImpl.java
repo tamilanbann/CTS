@@ -54,7 +54,7 @@ public class MenuItemDaoSqlImpl {
 		Connection con= ConnectionHandler.getConnection();
 		 String query="SELECT * FROM menu_item_list WHERE Active='Yes' AND Date_of_Launch< ?;";
 		 PreparedStatement preStmt = con.prepareStatement(query);
-		 preStmt.setString(1,LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+		 preStmt.setString(1,LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
 		 ResultSet rs= preStmt.executeQuery();
 		 
 		 while(rs.next())

@@ -17,7 +17,7 @@ public class ConnectionHandler {
 	    try{
 			
 			FileInputStream fis = null;
-			fis = new FileInputStream("truYum/src/connection.properties");
+			fis = new FileInputStream("C:\\Users\\tamil\\git\\CTS\\truyum\\connection.properties");
 			props.load(fis);
 			
 			

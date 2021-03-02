@@ -1,20 +1,27 @@
 package com.cognizant.truyum.dao;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.cognizant.truyum.model.MenuItem;
 
 public class MenuItemDaoCollectionImplTest {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ClassNotFoundException, SQLException {
 		// TODO Auto-generated method stub
-		System.out.println("=== Menu Item List Admin ===");
+		/*System.out.println("=== Menu Item List Admin ===");
 		testGetMenuItemListAdmin();
 		System.out.println("=== Menu Item List Customer ===");
 		testGetMenuItemListCustomer();
 		System.out.println("=== Menu modification ===");
-		testModifyMenuItem();
+		testModifyMenuItem();*/
+		
+		//testMenuSql();
+		
+		
+		
 	}
 	public static void testGetMenuItemListAdmin()
 	{
@@ -44,5 +51,24 @@ public class MenuItemDaoCollectionImplTest {
 		System.out.println(menuItemDao.getMenuItem(menuItem.getId()));
 		
 		
+	}
+	public static void testMenuSql() throws ClassNotFoundException, SQLException
+	{
+		MenuItemDaoSqlImpl obj=new MenuItemDaoSqlImpl();
+		MenuItem item =obj.getMenuItem(2);
+		System.out.println("=======specific item=======");
+		System.out.println(item);
+		System.out.println("=======customer table=======");
+		List<MenuItem> list= obj.getMenuItemListCustomer();
+		for(MenuItem X:list)
+		 {
+			 System.out.println(X);
+		 }
+		System.out.println("=======admin table=======");
+		list= obj.getMenuItemListAdmin();
+		for(MenuItem X:list)
+		 {
+			 System.out.println(X);
+		 }
 	}
 }
