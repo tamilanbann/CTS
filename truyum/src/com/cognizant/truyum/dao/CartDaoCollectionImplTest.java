@@ -17,7 +17,7 @@ public class CartDaoCollectionImplTest {
 		System.out.println("\n======Display cart items======\n");
 		testGetAllCartItems();*/
 		
-		//testcartsql();
+		testcartsql();
 		
 	}
 	
